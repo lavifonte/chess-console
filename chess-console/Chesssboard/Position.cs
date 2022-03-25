@@ -4,9 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace chess_console.Chesssboard
+namespace Chesssboard
 {
     internal class Position
     {
+        public int Row { get; set; }
+        public int Column { get; set; }
+
+        public Position(int row, int column)
+        {
+            Row = row;
+            Column = column;
+        }
+
+        public override string ToString()
+        {
+            return $"{Row}, {Column}";
+        }
     }
 }
