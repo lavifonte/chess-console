@@ -10,13 +10,19 @@ namespace Chesssboard
     {
         public int Rows { get; set; }
         public int Columns { get; set; }
-        private Pieces[,] Pieces;
+
+        private Pieces[,] Piece;
 
         public Chessboard(int rows, int columns)
         {
             Rows = rows;
             Columns = columns;
-            Pieces = new Pieces[rows, columns];
+            Piece = new Pieces[rows, columns];
+        }
+
+        public Pieces piece(int rows, int columns)
+        {
+            return Piece[rows, columns];
         }
     }
 }
