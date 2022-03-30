@@ -14,9 +14,9 @@ namespace Chesssboard
 
         public Chessboard Chessboard { get; set; }
 
-        public Pieces(Position position, Color color, Chessboard chessboard)
+        public Pieces(Color color, Chessboard chessboard)
         {
-            Position = position;
+            Position = null;
             Color = color;
             Chessboard = chessboard;
             MovementCount = 0;

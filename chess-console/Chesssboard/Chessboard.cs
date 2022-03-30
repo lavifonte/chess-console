@@ -24,5 +24,12 @@ namespace Chesssboard
         {
             return Piece[rows, columns];
         }
+
+        public void placePiece(Position position, Pieces piece)
+        {
+            Piece[position.Row, position.Column] = piece;
+            piece.Position = position;
+
+        }
     }
 }
