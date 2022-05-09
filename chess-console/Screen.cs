@@ -15,7 +15,7 @@ namespace chess_console
             {
                 for (int j = 0; j < board.Columns; j++)
                 {
-                    if (board.piece(i, j) == null)
+                    if (board.piece(i, j) == null) // if there's no piece in this position(r,c)
                     {
                         Console.Write("- ");
                     }
@@ -27,7 +27,7 @@ namespace chess_console
 
                 }
 
-                Console.WriteLine();
+                Console.WriteLine(); // break line for the next column
             }
 
         }

@@ -7,7 +7,7 @@ using Chesssboard;
 
 namespace Chess
 {
-    internal class Queen : Pieces
+    internal class Queen : Piece
     {
         public Queen(Color color, Chessboard chessboard) : base(color, chessboard)
         {

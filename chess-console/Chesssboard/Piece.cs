@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chesssboard
 {
-    internal class Pieces
+    internal class Piece
     {
         public Position Position { get; set; }
         public Color Color { get; protected set; }
@@ -14,9 +14,9 @@ namespace Chesssboard
 
         public Chessboard Chessboard { get; set; }
 
-        public Pieces(Color color, Chessboard chessboard)
+        public Piece(Color color, Chessboard chessboard)
         {
-            Position = null;
+            Position = null; //only the chessboard is responsible of placing pieces in positions. every piece starts with position null
             Color = color;
             Chessboard = chessboard;
             MovementCount = 0;

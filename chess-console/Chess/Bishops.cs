@@ -7,7 +7,7 @@ using Chesssboard;
 
 namespace Chess
 {
-    internal class Bishops : Pieces
+    internal class Bishops : Piece
     {
         public Bishops(Color color, Chessboard chessboard) : base(color, chessboard)
         {
