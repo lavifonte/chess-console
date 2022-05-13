@@ -23,7 +23,7 @@ namespace Chess
 
         public override string ToString()
         {
-            return $" {Column}{Row}";
+            return "" + Column + Row;
         }
     }
 }
