@@ -5,11 +5,22 @@ using chess_console.Chesssboard;
 
 try
 {
-    Chessboard board = new Chessboard(8, 8);
+    ChessMatch match = new ChessMatch();
+    
+    while(!match.End)
+    {
+        Console.Clear();
+        Screen.printChessboard(match.Board);
+        Console.WriteLine();
 
-    board.placePiece(new Rooks(Color.Black, board), new Position(0, 0));
+        Console.Write("Enter origin position: ");
+        Position origin = Screen.ReadPosition().toPosition();
+               
+        Console.Write("Enter next position: ");
+        Position next = Screen.ReadPosition().toPosition();
 
-    Screen.printChessboard(board);
+        match.Movement(origin, next);
+    }   
 
 }
 catch(ChessboardException e)

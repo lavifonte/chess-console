@@ -14,12 +14,17 @@ namespace Chesssboard
 
         public Chessboard Chessboard { get; set; }
 
-        public Piece(Color color, Chessboard chessboard)
+        public Piece(Chessboard chessboard, Color color)
         {
             Position = null; //only the chessboard is responsible of placing pieces in positions. every piece starts with position null
             Color = color;
             Chessboard = chessboard;
             MovementCount = 0;
+        }
+
+        public void addMovement()
+        {
+            MovementCount++;   
         }
     }
 }

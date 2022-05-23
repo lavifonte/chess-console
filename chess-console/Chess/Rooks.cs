@@ -10,7 +10,7 @@ namespace Chess
 {
     internal class Rooks : Piece
     {
-        public Rooks(Color color, Chessboard chessboard) : base(color, chessboard)
+        public Rooks(Chessboard chessboard, Color color) : base(chessboard, color)
         {
 
         }

@@ -9,7 +9,7 @@ namespace Chess
 {
     internal class Queen : Piece
     {
-        public Queen(Color color, Chessboard chessboard) : base(color, chessboard)
+        public Queen(Chessboard chessboard, Color color) : base(chessboard, color)
         {
 
         }

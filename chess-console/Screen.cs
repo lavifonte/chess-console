@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Chess;
 using Chesssboard;
 
 namespace chess_console
@@ -37,6 +38,15 @@ namespace chess_console
 
 
         }
+
+        public static ChessPosition ReadPosition()
+        {
+            string typed = Console.ReadLine();
+            char column = typed[0];
+            int row = int.Parse(typed[1] + " ");
+            return new ChessPosition(column, row);
+        }
+
         public static void printPiece(Piece piece)
         {
             if (piece.Color == Color.White)

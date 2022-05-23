@@ -9,7 +9,7 @@ namespace Chess
 {
     internal class Knights : Piece
     {
-        public Knights(Color color, Chessboard chessboard) : base(color, chessboard)
+        public Knights(Chessboard chessboard, Color color) : base(chessboard, color)
         {
         }
 
