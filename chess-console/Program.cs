@@ -15,7 +15,12 @@ try
 
         Console.Write("Enter origin position: ");
         Position origin = Screen.ReadPosition().toPosition();
-               
+
+        bool[,] possiblePositions = match.Board.piece(origin).possibleMovements();
+        Console.Clear();
+        Screen.printChessboard(match.Board, possiblePositions);
+
+        Console.WriteLine();
         Console.Write("Enter next position: ");
         Position next = Screen.ReadPosition().toPosition();
 

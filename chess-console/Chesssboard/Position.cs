@@ -11,6 +11,11 @@
             Column = column;
         }
 
+        public void values(int row, int column)
+        {
+            this.Row = row;
+            this.Column = column;
+        }
         public override string ToString()
         {
             return $"{Row}, {Column}";

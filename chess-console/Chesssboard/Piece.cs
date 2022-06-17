@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chesssboard
 {
-    internal class Piece
+    internal abstract class Piece
     {
         public Position Position { get; set; }
         public Color Color { get; protected set; }
@@ -22,6 +22,8 @@ namespace Chesssboard
             MovementCount = 0;
         }
 
+        public abstract bool[,] possibleMovements(); // abstract because the logic of this method depends on each piece
+       
         public void addMovement()
         {
             MovementCount++;   

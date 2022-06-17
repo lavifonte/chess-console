@@ -34,6 +34,8 @@ namespace Chess
         private void PlacePieces()
         {
             Board.placePiece(new Rooks(Board, Color.Black), new ChessPosition('c', 1).toPosition());
+            Board.placePiece(new Rooks(Board, Color.Black), new ChessPosition('c', 2).toPosition());
+            Board.placePiece(new King(Board, Color.Black), new ChessPosition('d', 1).toPosition());
         }
     }
 }
