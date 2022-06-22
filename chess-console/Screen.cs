@@ -10,7 +10,7 @@ namespace chess_console
 {
     internal class Screen
     {
-        public static void printChessboard(Chessboard board)
+        public static void PrintChessboard(Chessboard board)
         {
             for (int i = 0; i < board.Rows; i++)
             {
@@ -18,7 +18,7 @@ namespace chess_console
 
                 for (int j = 0; j < board.Columns; j++)
                 {
-                   printPiece(board.piece(i, j));                     
+                   PrintPiece(board.Piece(i, j));                     
                 }
 
                 Console.WriteLine();
@@ -28,7 +28,7 @@ namespace chess_console
 
         }
 
-        public static void printChessboard(Chessboard board, bool[,] possiblePositions)
+        public static void PrintChessboard(Chessboard board, bool[,] possiblePositions)
         {
             ConsoleColor originalBackground = Console.BackgroundColor;
             ConsoleColor alteredBackground = ConsoleColor.DarkGray;
@@ -49,7 +49,7 @@ namespace chess_console
                         Console.BackgroundColor = originalBackground;
                     }
 
-                    printPiece(board.piece(i, j));
+                    PrintPiece(board.Piece(i, j));
                     Console.BackgroundColor = originalBackground;
                 }
 
@@ -69,7 +69,7 @@ namespace chess_console
             return new ChessPosition(column, row);
         }
 
-        public static void printPiece(Piece piece)
+        public static void PrintPiece(Piece piece)
         {
             if (piece == null)
             {

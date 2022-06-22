@@ -6,29 +6,41 @@ using chess_console.Chesssboard;
 try
 {
     ChessMatch match = new ChessMatch();
-    
-    while(!match.End)
+
+    while (!match.End)
     {
-        Console.Clear();
-        Screen.printChessboard(match.Board);
-        Console.WriteLine();
+        try
+        {
+            Console.Clear();
+            Screen.PrintChessboard(match.Board);
+            Console.WriteLine();
+            Console.WriteLine("Turn: " + match.Turn);
+            Console.WriteLine("Waiting for " + match.CurrentPlayer + " player's move...");
 
-        Console.Write("Enter origin position: ");
-        Position origin = Screen.ReadPosition().toPosition();
+            Console.WriteLine();
+            Console.Write("Enter origin position: ");
+            Position initial = Screen.ReadPosition().ToPosition();
+            match.ValidateInitialPosition(initial);
 
-        bool[,] possiblePositions = match.Board.piece(origin).possibleMovements();
-        Console.Clear();
-        Screen.printChessboard(match.Board, possiblePositions);
+            bool[,] possiblePositions = match.Board.Piece(initial).PossibleMovements();
+            Console.Clear();
+            Screen.PrintChessboard(match.Board, possiblePositions);
 
-        Console.WriteLine();
-        Console.Write("Enter next position: ");
-        Position next = Screen.ReadPosition().toPosition();
-
-        match.Movement(origin, next);
-    }   
+            Console.WriteLine();
+            Console.Write("Enter next position: ");
+            Position next = Screen.ReadPosition().ToPosition();
+            match.ValidateFinalPosition(initial, next);
+            match.Move(initial, next);
+        }
+        catch (ChessboardException e)
+        {
+            Console.WriteLine(e.Message);
+            Console.ReadLine();
+        }
+    }
 
 }
-catch(ChessboardException e)
+catch (ChessboardException e)
 {
     Console.WriteLine(e.Message);
 }

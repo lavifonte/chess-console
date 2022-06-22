@@ -22,11 +22,35 @@ namespace Chesssboard
             MovementCount = 0;
         }
 
-        public abstract bool[,] possibleMovements(); // abstract because the logic of this method depends on each piece
-       
-        public void addMovement()
+        public void AddMovement()
         {
-            MovementCount++;   
+            MovementCount++;
         }
+
+        public bool TheresPossibleMovements()
+        {
+            bool[,] temporary = PossibleMovements();
+
+            for(int i = 0; i < Chessboard.Rows; i++)
+            {
+                for (int j = 0; j < Chessboard.Columns; j++)
+                {
+                    if(temporary[i,j])
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public bool CanMoveTo(Position final)
+        {
+            return PossibleMovements()[final.Row, final.Column];
+        }
+        public abstract bool[,] PossibleMovements(); // abstract because the logic of this method depends on each piece
+       
+        
     }
 }

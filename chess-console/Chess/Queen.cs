@@ -14,7 +14,7 @@ namespace Chess
 
         }
 
-        public override bool[,] possibleMovements()
+        public override bool[,] PossibleMovements()
         {
             throw new NotImplementedException();
         }

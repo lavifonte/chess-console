@@ -13,13 +13,13 @@ namespace Chess
         {
         }
 
-        private bool canMove(Position position)
+        private bool CanMove(Position position)
         {
-            Piece piece = Chessboard.piece(position);
+            Piece piece = Chessboard.Piece(position);
             return piece == null || piece.Color != Color; // return true (ergo, can move) if there's no piece or if there's opponent piece
         }
 
-        public override bool[,] possibleMovements()
+        public override bool[,] PossibleMovements()
         {
             bool[,] movementsArray = new bool[Chessboard.Rows, Chessboard.Columns];
 
@@ -27,50 +27,50 @@ namespace Chess
 
             //testing each position, in each direction (because the king can move one time to any direction
 
-            position.values(Position.Row - 1, Position.Column);
-            if(Chessboard.validPosition(position) && canMove(position))
+            position.Values(Position.Row - 1, Position.Column);
+            if(Chessboard.ValidPosition(position) && CanMove(position))
             {
                 movementsArray[position.Row, position.Column] = true;  
             }
 
-            position.values(Position.Row - 1, Position.Column + 1);
-            if (Chessboard.validPosition(position) && canMove(position))
+            position.Values(Position.Row - 1, Position.Column + 1);
+            if (Chessboard.ValidPosition(position) && CanMove(position))
             {
                 movementsArray[position.Row, position.Column] = true;
             }
 
-            position.values(Position.Row, Position.Column + 1);
-            if (Chessboard.validPosition(position) && canMove(position))
+            position.Values(Position.Row, Position.Column + 1);
+            if (Chessboard.ValidPosition(position) && CanMove(position))
             {
                 movementsArray[position.Row, position.Column] = true;
             }
 
-            position.values(Position.Row + 1, Position.Column + 1);
-            if (Chessboard.validPosition(position) && canMove(position))
+            position.Values(Position.Row + 1, Position.Column + 1);
+            if (Chessboard.ValidPosition(position) && CanMove(position))
             {
                 movementsArray[position.Row, position.Column] = true;
             }
 
-            position.values(Position.Row + 1, Position.Column);
-            if (Chessboard.validPosition(position) && canMove(position))
+            position.Values(Position.Row + 1, Position.Column);
+            if (Chessboard.ValidPosition(position) && CanMove(position))
             {
                 movementsArray[position.Row, position.Column] = true;
             }
 
-            position.values(Position.Row + 1, Position.Column - 1);
-            if (Chessboard.validPosition(position) && canMove(position))
+            position.Values(Position.Row + 1, Position.Column - 1);
+            if (Chessboard.ValidPosition(position) && CanMove(position))
             {
                 movementsArray[position.Row, position.Column] = true;
             }
 
-            position.values(Position.Row, Position.Column - 1);
-            if (Chessboard.validPosition(position) && canMove(position))
+            position.Values(Position.Row, Position.Column - 1);
+            if (Chessboard.ValidPosition(position) && CanMove(position))
             {
                 movementsArray[position.Row, position.Column] = true;
             }
 
-            position.values(Position.Row - 1, Position.Column - 1);
-            if (Chessboard.validPosition(position) && canMove(position))
+            position.Values(Position.Row - 1, Position.Column - 1);
+            if (Chessboard.ValidPosition(position) && CanMove(position))
             {
                 movementsArray[position.Row, position.Column] = true;
             }

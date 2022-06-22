@@ -21,25 +21,25 @@ namespace Chesssboard
             Pieces = new Piece[rows, columns];
         }
 
-        public Piece piece(int row, int column)
+        public Piece Piece(int row, int column)
         {
             return Pieces[row, column];
         }
 
-        public Piece piece(Position position)
+        public Piece Piece(Position position)
         {
             return Pieces[position.Row, position.Column];
         }
 
-        public bool theresPiece(Position position)
+        public bool TheresPiece(Position position)
         {
-            validatePosition(position);
-            return piece(position) != null;
+            ValidatePosition(position);
+            return Piece(position) != null;
         }
 
-        public void placePiece(Piece piece, Position position) // places piece x in the position y
+        public void PlacePiece(Piece piece, Position position) // places piece x in the position y
         {
-            if (theresPiece(position))
+            if (TheresPiece(position))
             {
                 throw new ChessboardException("There's a piece in this position");
             }
@@ -49,20 +49,20 @@ namespace Chesssboard
 
         }
 
-        public Piece removePiece(Position position)
+        public Piece RemovePiece(Position position)
         {
-            if (piece(position) == null)
+            if (Piece(position) == null)
             {
                 return null;
             }
 
-            Piece temporary = piece(position);
+            Piece temporary = Piece(position);
             temporary.Position = null;
             Pieces[position.Row, position.Column] = null;
             return temporary;
 
         }
-        public bool validPosition(Position position)
+        public bool ValidPosition(Position position)
         {
             if (position.Row < 0 || position.Row >= Rows || position.Column < 0 || position.Column >= Columns)
             {
@@ -72,9 +72,9 @@ namespace Chesssboard
             return true;
         }
 
-        public void validatePosition(Position position)
+        public void ValidatePosition(Position position)
         {
-            if (!validPosition(position))
+            if (!ValidPosition(position))
             {
                 throw new ChessboardException("Invalid position");
             }

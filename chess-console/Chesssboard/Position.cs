@@ -11,7 +11,7 @@
             Column = column;
         }
 
-        public void values(int row, int column)
+        public void Values(int row, int column)
         {
             this.Row = row;
             this.Column = column;

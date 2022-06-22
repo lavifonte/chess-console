@@ -13,7 +13,7 @@ namespace Chess
             Row = row;
         }
 
-        public Position toPosition()
+        public Position ToPosition()
         {
             return new Position(8 - Row, Column - 'a'); //in the array, the equivalent chessboard row position would be
                                                         //8 - {chess row position} bc the position 8 on the chessboard would be 0 on the array (so 8 - 8 = 0)
