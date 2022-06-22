@@ -10,6 +10,40 @@ namespace chess_console
 {
     internal class Screen
     {
+
+        public static void PrintMatch(ChessMatch match)
+        {
+            PrintChessboard(match.Board);
+            PrintCapturedPieces(match);
+            Console.WriteLine();
+            Console.WriteLine("Turn: " + match.Turn);
+            Console.WriteLine("Waiting for " + match.CurrentPlayer + " player's move...");
+        }
+
+        public static void PrintCapturedPieces(ChessMatch match)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Captured pieces:");
+            Console.Write("White: ");
+            PrintSet(match.Captured(Color.White));
+            ConsoleColor temporary = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write(" Black: ");
+            PrintSet(match.Captured(Color.Black));
+            Console.ForegroundColor = temporary;
+            Console.WriteLine();
+        }
+
+        public static void PrintSet(HashSet<Piece> set)
+        {
+            Console.Write("[");
+            foreach(Piece piece in set)
+            {
+                Console.WriteLine(piece + " ");
+            }
+
+            Console.Write("]");
+        }
         public static void PrintChessboard(Chessboard board)
         {
             for (int i = 0; i < board.Rows; i++)

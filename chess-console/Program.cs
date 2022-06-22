@@ -12,10 +12,7 @@ try
         try
         {
             Console.Clear();
-            Screen.PrintChessboard(match.Board);
-            Console.WriteLine();
-            Console.WriteLine("Turn: " + match.Turn);
-            Console.WriteLine("Waiting for " + match.CurrentPlayer + " player's move...");
+            Screen.PrintMatch(match);
 
             Console.WriteLine();
             Console.Write("Enter origin position: ");
