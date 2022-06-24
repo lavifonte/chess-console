@@ -8,9 +8,9 @@ using Chesssboard;
 
 namespace Chess
 {
-    internal class Rooks : Piece
+    internal class Rook : Piece
     {
-        public Rooks(Chessboard chessboard, Color color) : base(chessboard, color)
+        public Rook(Chessboard chessboard, Color color) : base(chessboard, color)
         {
 
         }

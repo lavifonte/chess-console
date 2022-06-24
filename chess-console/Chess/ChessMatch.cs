@@ -225,10 +225,11 @@ namespace Chess
                     {
                         if (possibleMoves[i, j]) // returns true, meaning there's possible movements
                         {
+                            Position initial = piece.Position;
                             Position final = new Position(i, j);
-                            Piece capturedPiece = Movement(piece.Position, final);
+                            Piece capturedPiece = Movement(initial, final);
                             bool isCheck = IsInCheck(color);
-                            Undo(piece.Position, final, capturedPiece);
+                            Undo(initial, final, capturedPiece);
 
                             if (!isCheck) // means Movement() managed to undo check, so it's not checkmate
                             {
@@ -248,12 +249,43 @@ namespace Chess
         }
         private void PlacePieces()
         {
-            PlaceNewPiece('a', 1, new Rooks(Board, Color.White));
-            PlaceNewPiece('h', 1, new Rooks(Board, Color.White));
-            PlaceNewPiece('a', 8, new Rooks(Board, Color.Black));
-            PlaceNewPiece('h', 8, new Rooks(Board, Color.Black));
-            PlaceNewPiece('d', 1, new King(Board, Color.White));
-            PlaceNewPiece('d', 8, new King(Board, Color.Black));
+            PlaceNewPiece('a', 1, new Rook(Board, Color.White));
+            PlaceNewPiece('b', 1, new Knight(Board, Color.White));
+            PlaceNewPiece('c', 1, new Bishop(Board, Color.White));
+            PlaceNewPiece('d', 1, new Queen(Board, Color.White));
+            PlaceNewPiece('e', 1, new King(Board, Color.White));
+            PlaceNewPiece('f', 1, new Bishop(Board, Color.White));
+            PlaceNewPiece('g', 1, new Knight(Board, Color.White));
+            PlaceNewPiece('h', 1, new Rook(Board, Color.White));
+            PlaceNewPiece('a', 2, new Pawn(Board, Color.White));
+            PlaceNewPiece('b', 2, new Pawn(Board, Color.White));
+            PlaceNewPiece('c', 2, new Pawn(Board, Color.White));
+            PlaceNewPiece('d', 2, new Pawn(Board, Color.White));
+            PlaceNewPiece('e', 2, new Pawn(Board, Color.White));
+            PlaceNewPiece('f', 2, new Pawn(Board, Color.White));
+            PlaceNewPiece('g', 2, new Pawn(Board, Color.White));
+            PlaceNewPiece('h', 2, new Pawn(Board, Color.White));
+
+            PlaceNewPiece('a', 8, new Rook(Board, Color.Black));
+            PlaceNewPiece('b', 8, new Knight(Board, Color.Black));
+            PlaceNewPiece('c', 8, new Bishop(Board, Color.Black));
+            PlaceNewPiece('d', 8, new Queen(Board, Color.Black));
+            PlaceNewPiece('e', 8, new King(Board, Color.Black));
+            PlaceNewPiece('f', 8, new Bishop(Board, Color.Black));
+            PlaceNewPiece('g', 8, new Knight(Board, Color.Black));
+            PlaceNewPiece('h', 8, new Rook(Board, Color.Black));
+            PlaceNewPiece('a', 7, new Pawn(Board, Color.Black));
+            PlaceNewPiece('b', 7, new Pawn(Board, Color.Black));
+            PlaceNewPiece('c', 7, new Pawn(Board, Color.Black));
+            PlaceNewPiece('d', 7, new Pawn(Board, Color.Black));
+            PlaceNewPiece('e', 7, new Pawn(Board, Color.Black));
+            PlaceNewPiece('f', 7, new Pawn(Board, Color.Black));
+            PlaceNewPiece('g', 7, new Pawn(Board, Color.Black));
+            PlaceNewPiece('h', 7, new Pawn(Board, Color.Black));
+
+
+
+
         }
     }
 }
