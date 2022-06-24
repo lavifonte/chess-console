@@ -27,6 +27,10 @@ namespace Chesssboard
             MovementCount++;
         }
 
+        public void UndoMovement()
+        {
+            MovementCount--;
+        }
         public bool TheresPossibleMovements()
         {
             bool[,] temporary = PossibleMovements();

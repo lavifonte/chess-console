@@ -18,6 +18,12 @@ namespace chess_console
             Console.WriteLine();
             Console.WriteLine("Turn: " + match.Turn);
             Console.WriteLine("Waiting for " + match.CurrentPlayer + " player's move...");
+
+            if (match.Check)
+            {
+                Console.WriteLine();
+                Console.WriteLine("CHECK!");
+            }
         }
 
         public static void PrintCapturedPieces(ChessMatch match)
@@ -37,7 +43,7 @@ namespace chess_console
         public static void PrintSet(HashSet<Piece> set)
         {
             Console.Write("[");
-            foreach(Piece piece in set)
+            foreach (Piece piece in set)
             {
                 Console.WriteLine(piece + " ");
             }
@@ -52,7 +58,7 @@ namespace chess_console
 
                 for (int j = 0; j < board.Columns; j++)
                 {
-                   PrintPiece(board.Piece(i, j));                     
+                    PrintPiece(board.Piece(i, j));
                 }
 
                 Console.WriteLine();
@@ -73,7 +79,7 @@ namespace chess_console
 
                 for (int j = 0; j < board.Columns; j++)
                 {
-                    if(possiblePositions[i,j])
+                    if (possiblePositions[i, j])
                     {
                         Console.BackgroundColor = alteredBackground;
                     }
