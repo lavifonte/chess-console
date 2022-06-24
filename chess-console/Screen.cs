@@ -58,7 +58,7 @@ namespace chess_console
             Console.Write("[");
             foreach (Piece piece in set)
             {
-                Console.WriteLine(piece + " ");
+                Console.Write(piece + " ");
             }
 
             Console.Write("]");
