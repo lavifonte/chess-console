@@ -45,14 +45,14 @@ namespace Chess
             return capturedPiece;
         }
 
-        public void Move(Position initial, Position final) // completes a move and go to next turn
+        public void Move(Position initial, Position final) // completes a move to go to next turn
         {
             Piece capturedPiece = Movement(initial, final);
 
             if (IsInCheck(CurrentPlayer))
             {
                 Undo(initial, final, capturedPiece);
-                throw new ChessboardException("You'll be in check if you go there!");
+                throw new ChessboardException("You'll be in check if you go there! Press enter to try again.");
             }
 
             if (IsInCheck(Opponent(CurrentPlayer)))
@@ -60,14 +60,22 @@ namespace Chess
                 Check = true;
             }
 
-
             else
             {
                 Check = false;
             }
 
-            Turn++;
-            ChangePlayer();
+            if (TestIfCheckMate(Opponent(CurrentPlayer))) // if opponent is in checkmate, game is over
+            {
+                End = true;
+            }
+
+            else
+            {
+                Turn++;
+                ChangePlayer();
+            }
+
         }
 
         public void Undo(Position initial, Position final, Piece capturedPiece)
@@ -198,6 +206,40 @@ namespace Chess
             }
 
             return false;
+        }
+
+        public bool TestIfCheckMate(Color color) // checkmate is when there's no possible moves to get out of check
+        {
+            if (!IsInCheck(color))
+            {
+                return false;
+            }
+
+            foreach (Piece piece in OnBoard(color))
+            {
+                bool[,] possibleMoves = piece.PossibleMovements();
+
+                for (int i = 0; i < Board.Rows; i++)
+                {
+                    for (int j = 0; j < Board.Columns; j++)
+                    {
+                        if (possibleMoves[i, j]) // returns true, meaning there's possible movements
+                        {
+                            Position final = new Position(i, j);
+                            Piece capturedPiece = Movement(piece.Position, final);
+                            bool isCheck = IsInCheck(color);
+                            Undo(piece.Position, final, capturedPiece);
+
+                            if (!isCheck) // means Movement() managed to undo check, so it's not checkmate
+                            {
+                                return false; // not checkmate
+                            }
+                        }
+                    }
+                }
+            }
+
+            return true; // is checkmate
         }
         public void PlaceNewPiece(char column, int row, Piece piece)
         {

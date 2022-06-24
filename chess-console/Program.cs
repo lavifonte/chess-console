@@ -32,9 +32,12 @@ try
         catch (ChessboardException e)
         {
             Console.WriteLine(e.Message);
-            Console.ReadLine();
+            Console.ReadLine(); // press enter to go back
         }
     }
+
+    Console.Clear();
+    Screen.PrintMatch(match);
 
 }
 catch (ChessboardException e)
