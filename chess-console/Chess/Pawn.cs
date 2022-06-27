@@ -37,8 +37,9 @@ namespace Chess
                     possibleMovements[position.Row, position.Column] = true;
                 }
 
+                Position tempPosition = new Position(Position.Row - 1, Position.Column);
                 position.Values(Position.Row - 2, Position.Column);
-                if (Chessboard.ValidPosition(position) && PositionIsAvailable(position) && MovementCount == 0)
+                if (Chessboard.ValidPosition(position) && PositionIsAvailable(position) && Chessboard.ValidPosition(tempPosition) && PositionIsAvailable(tempPosition) && MovementCount == 0)
                 {
                     possibleMovements[position.Row, position.Column] = true;
                 }
@@ -64,8 +65,9 @@ namespace Chess
                     possibleMovements[position.Row, position.Column] = true;
                 }
 
+                Position tempPosition = new Position(Position.Row + 1, Position.Column);
                 position.Values(Position.Row + 2, Position.Column);
-                if (Chessboard.ValidPosition(position) && PositionIsAvailable(position) && MovementCount == 0)
+                if (Chessboard.ValidPosition(position) && PositionIsAvailable(position) && Chessboard.ValidPosition(tempPosition) && PositionIsAvailable(tempPosition) && MovementCount == 0)
                 {
                     possibleMovements[position.Row, position.Column] = true;
                 }

@@ -24,10 +24,10 @@ namespace Chess
             Turn = 1;
             CurrentPlayer = Color.White;
             End = false;
+            Check = false;
             Pieces = new HashSet<Piece>();
             CapturedPieces = new HashSet<Piece>();
-            PlacePieces();
-            Check = false;
+            PlacePieces();          
         }
 
         public Piece Movement(Position initial, Position final)
@@ -40,6 +40,28 @@ namespace Chess
             if (capturedPiece != null)
             {
                 CapturedPieces.Add(capturedPiece);
+            }
+
+            // castling short
+
+            if(piece is King && final.Column == initial.Column + 2)
+            {
+                Position rookInitial = new Position(initial.Row, initial.Column + 3);
+                Position rookFinal = new Position(initial.Row, initial.Column + 1);
+                Piece rook = Board.RemovePiece(rookInitial);
+                rook.AddMovement();
+                Board.PlacePiece(rook, rookFinal);
+            }
+
+            // castling long
+
+            if (piece is King && final.Column == initial.Column - 2)
+            {
+                Position rookInitial = new Position(initial.Row, initial.Column - 4);
+                Position rookFinal = new Position(initial.Row, initial.Column - 1);
+                Piece rook = Board.RemovePiece(rookInitial);
+                rook.AddMovement();
+                Board.PlacePiece(rook, rookFinal);
             }
 
             return capturedPiece;
@@ -90,6 +112,28 @@ namespace Chess
             }
 
             Board.PlacePiece(piece, initial);
+
+            // castling short
+
+            if (piece is King && final.Column == initial.Column + 2)
+            {
+                Position rookInitial = new Position(initial.Row, final.Column + 3);
+                Position rookFinal = new Position(initial.Row, final.Column + 1);
+                Piece rook = Board.RemovePiece(rookFinal);
+                rook.UndoMovement();
+                Board.PlacePiece(rook, rookInitial);
+            }
+
+            // castling long
+
+            if (piece is King && final.Column == initial.Column - 2)
+            {
+                Position rookInitial = new Position(initial.Row, final.Column - 4);
+                Position rookFinal = new Position(initial.Row, final.Column - 1);
+                Piece rook = Board.RemovePiece(rookFinal);
+                rook.UndoMovement();
+                Board.PlacePiece(rook, rookInitial);
+            }
 
         }
 
@@ -253,7 +297,7 @@ namespace Chess
             PlaceNewPiece('b', 1, new Knight(Board, Color.White));
             PlaceNewPiece('c', 1, new Bishop(Board, Color.White));
             PlaceNewPiece('d', 1, new Queen(Board, Color.White));
-            PlaceNewPiece('e', 1, new King(Board, Color.White));
+            PlaceNewPiece('e', 1, new King(Board, Color.White, this));
             PlaceNewPiece('f', 1, new Bishop(Board, Color.White));
             PlaceNewPiece('g', 1, new Knight(Board, Color.White));
             PlaceNewPiece('h', 1, new Rook(Board, Color.White));
@@ -270,7 +314,7 @@ namespace Chess
             PlaceNewPiece('b', 8, new Knight(Board, Color.Black));
             PlaceNewPiece('c', 8, new Bishop(Board, Color.Black));
             PlaceNewPiece('d', 8, new Queen(Board, Color.Black));
-            PlaceNewPiece('e', 8, new King(Board, Color.Black));
+            PlaceNewPiece('e', 8, new King(Board, Color.Black, this));
             PlaceNewPiece('f', 8, new Bishop(Board, Color.Black));
             PlaceNewPiece('g', 8, new Knight(Board, Color.Black));
             PlaceNewPiece('h', 8, new Rook(Board, Color.Black));

@@ -39,7 +39,7 @@ namespace Chess
                     break;
                 }
 
-                position.Row--;
+                position.Row = position.Row - 1;
             }
 
             position.Values(Position.Row + 1, Position.Column);
@@ -52,7 +52,7 @@ namespace Chess
                     break;
                 }
 
-                position.Row++;
+                position.Row = position.Row + 1;
             }
 
             position.Values(Position.Row, Position.Column + 1);
@@ -65,7 +65,7 @@ namespace Chess
                     break;
                 }
 
-                position.Column++;
+                position.Column = position.Column + 1;
             }
 
             position.Values(Position.Row, Position.Column - 1);
@@ -78,7 +78,7 @@ namespace Chess
                     break;
                 }
 
-                position.Column--;
+                position.Column = position.Column - 1;
             }
 
             return movementsArray;
