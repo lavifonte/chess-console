@@ -9,8 +9,11 @@ namespace Chess
 {
     internal class Pawn : Piece
     {
-        public Pawn(Chessboard chessboard, Color color) : base(chessboard, color)
+
+        private ChessMatch Match;
+        public Pawn(Chessboard chessboard, Color color, ChessMatch match) : base(chessboard, color)
         {
+            Match = match;
         }
 
         private bool TheresEnemy(Position position)
@@ -27,7 +30,7 @@ namespace Chess
         public override bool[,] PossibleMovements()
         {
             bool[,] possibleMovements = new bool[Chessboard.Rows, Chessboard.Columns];
-            Position position = new Position(0, 0);
+            Position position = new(0, 0);
 
             if (Color == Color.White)
             {
@@ -37,7 +40,7 @@ namespace Chess
                     possibleMovements[position.Row, position.Column] = true;
                 }
 
-                Position tempPosition = new Position(Position.Row - 1, Position.Column);
+                Position tempPosition = new(Position.Row - 1, Position.Column);
                 position.Values(Position.Row - 2, Position.Column);
                 if (Chessboard.ValidPosition(position) && PositionIsAvailable(position) && Chessboard.ValidPosition(tempPosition) && PositionIsAvailable(tempPosition) && MovementCount == 0)
                 {
@@ -55,6 +58,26 @@ namespace Chess
                 {
                     possibleMovements[position.Row, position.Column] = true;
                 }
+
+
+                // en passant
+                if (Position.Row == 3)
+                {
+                    Position left = new(Position.Row, Position.Column - 1);
+
+                    if(Chessboard.ValidPosition(left) && TheresEnemy(left) && Chessboard.Piece(left) == Match.PossiblyEnPassant)
+                    {
+                        possibleMovements[left.Row - 1, left.Column] = true;
+                    }
+
+                    Position right = new(Position.Row, Position.Column + 1);
+
+                    if (Chessboard.ValidPosition(right) && TheresEnemy(right) && Chessboard.Piece(right) == Match.PossiblyEnPassant)
+                    {
+                        possibleMovements[right.Row - 1, right.Column] = true;
+                    }
+                }
+
             }
 
             else
@@ -65,7 +88,7 @@ namespace Chess
                     possibleMovements[position.Row, position.Column] = true;
                 }
 
-                Position tempPosition = new Position(Position.Row + 1, Position.Column);
+                Position tempPosition = new(Position.Row + 1, Position.Column);
                 position.Values(Position.Row + 2, Position.Column);
                 if (Chessboard.ValidPosition(position) && PositionIsAvailable(position) && Chessboard.ValidPosition(tempPosition) && PositionIsAvailable(tempPosition) && MovementCount == 0)
                 {
@@ -82,6 +105,25 @@ namespace Chess
                 if (Chessboard.ValidPosition(position) && TheresEnemy(position))
                 {
                     possibleMovements[position.Row, position.Column] = true;
+                }
+
+
+                // en passant
+                if (Position.Row == 4)
+                {
+                    Position left = new(Position.Row, Position.Column - 1);
+
+                    if (Chessboard.ValidPosition(left) && TheresEnemy(left) && Chessboard.Piece(left) == Match.PossiblyEnPassant)
+                    {
+                        possibleMovements[left.Row + 1, left.Column] = true;
+                    }
+
+                    Position right = new(Position.Row, Position.Column + 1);
+
+                    if (Chessboard.ValidPosition(right) && TheresEnemy(right) && Chessboard.Piece(right) == Match.PossiblyEnPassant)
+                    {
+                        possibleMovements[right.Row + 1, right.Column] = true;
+                    }
                 }
             }
 
