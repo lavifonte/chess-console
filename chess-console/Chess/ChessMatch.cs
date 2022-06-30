@@ -111,8 +111,8 @@ namespace Chess
                 if((piece.Color == Color.White && final.Row == 0) || (piece.Color == Color.Black && final.Row == 7))
                 {
                     piece = Board.RemovePiece(final);
-                    Pieces.Remove(piece);
-                    Piece queen = new Queen(Board, piece.Color);
+                    Pieces.Remove(piece); // removes from the board
+                    Piece queen = new Queen(Board, piece.Color); // creates new queen to substitute pawn
                     Board.PlacePiece(queen, final);
                     Pieces.Add(queen);
                 }
